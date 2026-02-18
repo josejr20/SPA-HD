@@ -1,0 +1,26 @@
+package com.andreutp.centromasajes.repository;
+
+import com.andreutp.centromasajes.dao.IRoleRepository;
+import com.andreutp.centromasajes.model.RoleModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+public class IRoleRepositoryTest {
+    /*@Autowired
+    private IRoleRepository roleRepository;
+
+    @Test
+    void testSaveRole() {
+        RoleModel role = new RoleModel();
+        role.setName("ADMIN");
+
+        RoleModel saved = roleRepository.save(role);
+
+        assertNotNull(saved.getId());
+        assertEquals("ADMIN", saved.getName());
+    }
+*/
+}
