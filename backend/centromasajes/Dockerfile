@@ -5,9 +5,10 @@ FROM eclipse-temurin:21-jdk-alpine AS build
 WORKDIR /app
 
 # Copia archivos Maven wrapper y pom.xml primero (para caché)
-COPY centromasajes/mvnw .
-COPY centromasajes/.mvn .mvn
-COPY centromasajes/pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src ./src
 
 # Da permisos al mvnw
 RUN chmod +x mvnw
