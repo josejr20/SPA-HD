@@ -42,7 +42,6 @@ const Promociones = () => {
 
             const mapped = data.map(p => {
                 const esPorcentaje = p.discountPercent > 0;
-                const esMonto = p.discountAmount > 0;
 
                 return {
                     id: p.id,

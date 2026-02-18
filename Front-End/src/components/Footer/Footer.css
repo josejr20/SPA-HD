@@ -60,13 +60,27 @@
   gap: 15px;
 }
 
-.social-icons img {
-  filter: invert(100%);
+.social-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s;
 }
 
-.social-icons img:hover {
+.social-button:hover {
   transform: scale(1.2);
+}
+
+.social-icons img {
+  filter: invert(100%);
+  transition: filter 0.3s;
+}
+
+.social-button:hover img {
   filter: invert(70%) sepia(80%) saturate(500%) hue-rotate(10deg);
 }
 

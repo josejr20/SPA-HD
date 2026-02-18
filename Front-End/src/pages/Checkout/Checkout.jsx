@@ -127,7 +127,7 @@ const Checkout = () => {
           <div className="checkout-wrapper empty-cart-message">
             <h1>Tu carrito está vacío.</h1>
             <p>Parece que no tienes productos en tu carrito.{' '}
-              <a onClick={() => navigate('/')}>¡Explora nuestros servicios!</a>
+              <button className="link-button" onClick={() => navigate('/')}>¡Explora nuestros servicios!</button>
             </p>
           </div>
         </div>

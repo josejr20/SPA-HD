@@ -77,24 +77,24 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Síguenos</h4>
           <div className="social-icons">
-            <a href="#">
+            <button className="social-button" aria-label="Facebook">
               <img
                 src="https://img.icons8.com/ios-filled/30/facebook-new.png"
                 alt="Facebook"
               />
-            </a>
-            <a href="#">
+            </button>
+            <button className="social-button" aria-label="Instagram">
               <img
                 src="https://img.icons8.com/ios-filled/30/instagram-new.png"
                 alt="Instagram"
               />
-            </a>
-            <a href="#">
+            </button>
+            <button className="social-button" aria-label="WhatsApp">
               <img
                 src="https://img.icons8.com/ios-filled/30/whatsapp.png"
                 alt="WhatsApp"
               />
-            </a>
+            </button>
           </div>
         </div>
       </div>

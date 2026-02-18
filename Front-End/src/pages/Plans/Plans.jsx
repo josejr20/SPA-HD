@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"; 
 import MainLayout from "../../layouts/MainLayout";
 import "./Plans.css";
-import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cartContext";
 import axios from "axios"; 
 
@@ -79,7 +78,6 @@ const mapFromBackendPromotions = (p) => {
 
 
 const Plans = () => {
-  const navigate = useNavigate();
   const {addToCart} = useCart();
 
   // Estado para Planes de Membresía

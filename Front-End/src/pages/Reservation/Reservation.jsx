@@ -43,7 +43,7 @@ const safeGetAvailabilityFields = (a = {}) => {
     } else {
       const mapping = {
         'LUNES': 1, 'MARTES': 2, 'MIERCOLES': 3, 'MIÉRCOLES': 3,
-        'MIERCOLES': 3, 'JUEVES': 4, 'VIERNES': 5, 'SABADO': 6, 'SÁBADO': 6, 'DOMINGO': 7
+        'JUEVES': 4, 'VIERNES': 5, 'SABADO': 6, 'SÁBADO': 6, 'DOMINGO': 7
       };
       weekdayNum = mapping[normalize(obj.day)] ?? null;
     }
@@ -152,7 +152,7 @@ const Reservation = () => {
     console.log("Workers disponibles para", formData.date, ":", workersAvailableToday.map(w=>w.id));
   }
 
-  const fetchAvailableHours = async (workerId, date) => {
+  const fetchAvailableHours = React.useCallback(async (workerId, date) => {
     if (!workerId || !date || !serviceToBook) {
       setAvailableHours([]);
       return;
@@ -186,7 +186,7 @@ const Reservation = () => {
       console.error("Error obteniendo horas disponibles:", err);
       setAvailableHours([]);
     }
-  };
+  }, [serviceToBook]);
 
   useEffect(() => {
     if (formData.workerId && formData.date) {
@@ -194,7 +194,7 @@ const Reservation = () => {
     } else {
       setAvailableHours([]);
     }
-  }, [formData.date, formData.workerId, serviceToBook]);
+  }, [formData.date, formData.workerId, serviceToBook, fetchAvailableHours]);
 
   const handleSubmit = async (e) => {
   e.preventDefault();

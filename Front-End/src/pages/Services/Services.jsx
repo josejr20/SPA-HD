@@ -24,10 +24,10 @@ const Services = () => {
   const [servicesData, setServicesData] = useState(staticServicesData);
   const categories = Object.keys(staticServicesData);
 
-  const getCategoryFromHash = () => {
+  const getCategoryFromHash = React.useCallback(() => {
     const hash = location.hash.replace("#", "");
     return categories.includes(hash) ? hash : categories[0];
-  };
+  }, [location.hash, categories]);
 
   const [activeTab, setActiveTab] = useState(getCategoryFromHash());
 
@@ -64,7 +64,7 @@ const Services = () => {
     if (categoryFromHash !== activeTab) {
       setActiveTab(categoryFromHash);
     }
-  }, [location.hash]);
+  }, [location.hash, activeTab, getCategoryFromHash]);
 
   const ServiceCard = ({ service }) => {
     const {addToCart} = useCart();

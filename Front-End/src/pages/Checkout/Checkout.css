@@ -40,14 +40,20 @@
   line-height: 1.6;
 }
 
-.empty-cart-message a {
+.empty-cart-message a,
+.empty-cart-message .link-button {
   color: #ff8c42;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  padding: 0;
 }
 
-.empty-cart-message a:hover {
+.empty-cart-message a:hover,
+.empty-cart-message .link-button:hover {
   text-decoration: underline;
 }
 
