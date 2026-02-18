@@ -1,20 +1,19 @@
-# Usa una imagen de Java 21 con Maven incluida
+# ===== Stage de build =====
 FROM eclipse-temurin:21-jdk-alpine AS build
 
 # Establece directorio de trabajo
 WORKDIR /app
 
-# Copia archivos Maven wrapper y pom.xml primero (para caché)
+# Copia Maven wrapper y pom.xml primero (para caché)
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
-COPY src ./src
 
 # Da permisos al mvnw
 RUN chmod +x mvnw
 
-# Copia todo el código del backend
-COPY centromasajes/src ./src
+# Copia todo el código fuente
+COPY src ./src
 
 # Construye el jar sin tests
 RUN ./mvnw clean package -DskipTests
