@@ -1,25 +1,33 @@
-# Base image con Java 17
-FROM eclipse-temurin:17-jdk-alpine
+# Usa una imagen de Java 21 con Maven incluida
+FROM eclipse-temurin:21-jdk-alpine AS build
 
-# Directorio de trabajo
+# Establece directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos de Maven wrapper y pom.xml primero (para cache)
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+# Copia archivos Maven wrapper y pom.xml primero (para caché)
+COPY centromasajes/mvnw .
+COPY centromasajes/.mvn .mvn
+COPY centromasajes/pom.xml .
 
-# Dar permisos a mvnw
+# Da permisos al mvnw
 RUN chmod +x mvnw
 
-# Descargar dependencias sin compilar todo
-RUN ./mvnw dependency:go-offline
+# Copia todo el código del backend
+COPY centromasajes/src ./src
 
-# Copiar el resto del código
-COPY src ./src
-
-# Build del jar
+# Construye el jar sin tests
 RUN ./mvnw clean package -DskipTests
 
-# Comando para ejecutar tu app
-CMD ["java", "-jar", "target/centromasajes-0.0.1-SNAPSHOT.jar"]
+# ===== Stage final =====
+FROM eclipse-temurin:21-jre-alpine
+
+WORKDIR /app
+
+# Copia el jar generado desde la etapa de build
+COPY --from=build /app/target/centromasajes-0.0.1-SNAPSHOT.jar app.jar
+
+# Expone el puerto de Spring Boot
+EXPOSE 8080
+
+# Comando para ejecutar la app
+CMD ["java", "-jar", "app.jar"]
